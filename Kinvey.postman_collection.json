@@ -664,7 +664,7 @@
       "name": "Files",
       "item": [
         {
-          "name": "fileUpload1",
+          "name": "1 - Upload Metadata to Kinvey",
           "event": [
             {
               "listen": "test",
@@ -710,7 +710,7 @@
           "response": []
         },
         {
-          "name": "fileUpload2",
+          "name": "2 - Upload file to GCS",
           "request": {
             "method": "PUT",
             "header": [
