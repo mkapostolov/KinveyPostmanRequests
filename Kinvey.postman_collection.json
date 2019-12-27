@@ -1,3538 +1,3129 @@
 {
-	"info": {
-		"_postman_id": "f5e90b77-0189-4e4d-909c-f508ccf2ba50",
-		"name": "Kinvey",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "Ping",
-			"item": [
-				{
-					"name": "Ping instance",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Ping instance 2",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/appdata/",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"appdata",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Ping app",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{appSecret}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/appdata/{{appKey}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"appdata",
-								"{{appKey}}"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Users",
-			"item": [
-				{
-					"name": "Groups",
-					"item": [
-						{
-							"name": "List groups",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
-										"exec": [
-											"var response = JSON.parse(responseBody);",
-											"pm.environment.set(\"group_id\", response[0]._id);"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text",
-										"value": "Kinvey {{accessToken}}"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{host}}/group/{{appKey}}",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										"group",
-										"{{appKey}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Retrieve a group",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text",
-										"value": "Kinvey {{accessToken}}"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{host}}/group/{{appKey}}/{{group_id}}",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										"group",
-										"{{appKey}}",
-										"{{group_id}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Create",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
-										"exec": [
-											"var response = JSON.parse(responseBody);",
-											"pm.environment.set(\"group_id\", response._id);"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Authorization",
-										"type": "text",
-										"value": "Kinvey {{accessToken}}"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"_id\": \"G\",\n  \"users\": {\n    \"all\": false,\n    \"list\": [\n       { \"_type\": \"KinveyRef\", \"_collection\": \"user\", \"_id\": \"1\" },\n       { \"_type\": \"KinveyRef\", \"_collection\": \"user\", \"_id\": \"3\" },\n       { \"_type\": \"KinveyRef\", \"_collection\": \"user\", \"_id\": \"4\" }\n    ]\n  },\n  \"groups\": [\n    { \"_type\": \"KinveyRef\", \"_collection\": \"group\", \"_id\": \"G1\" },\n    { \"_type\": \"KinveyRef\", \"_collection\": \"group\", \"_id\": \"G5\" }\n  ]\n}"
-								},
-								"url": {
-									"raw": "{{host}}/group/{{appKey}}",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										"group",
-										"{{appKey}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Update",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Authorization",
-										"type": "text",
-										"value": "Kinvey {{accessToken}}"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{host}}/group/{{appKey}}/{{group_id}}",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										"group",
-										"{{appKey}}",
-										"{{group_id}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
-										"exec": [
-											"pm.environment.set(\"group_id\", null);"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text",
-										"value": "Kinvey {{accessToken}}"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{host}}/group/{{appKey}}/{{group_id}}",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										"group",
-										"{{appKey}}",
-										"{{group_id}}"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Register",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
-								"exec": [
-									"var response = JSON.parse(responseBody);",
-									"pm.environment.set(\"accessToken\", response._kmd.authtoken);",
-									"pm.environment.set(\"user_id\", response._id);",
-									"pm.environment.set(\"username\", response.username);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{appSecret}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"username\":\"test\",\n  \"password\":\"test\"\n}"
-						},
-						"url": {
-							"raw": "{{host}}/user/{{appKey}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"user",
-								"{{appKey}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									"var response = JSON.parse(responseBody);",
-									"pm.environment.set(\"accessToken\", response._kmd.authtoken);",
-									"pm.environment.set(\"user_id\", response._id);",
-									"pm.environment.set(\"username\", response.username);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{appSecret}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"username\":\"test\",\n\t\"password\":\"test\"\n}"
-						},
-						"url": {
-							"raw": "{{host}}/user/{{appKey}}/login",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"user",
-								"{{appKey}}",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "_me",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/user/{{appKey}}/_me",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"user",
-								"{{appKey}}",
-								"_me"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
-								"exec": [
-									"var response = JSON.parse(responseBody);",
-									"pm.environment.set(\"accessToken\", response._kmd.authtoken);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "Kinvey {{accessToken}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"FirstName\": \"John\",\n\t\"LastName\": \"Doe\"\n}"
-						},
-						"url": {
-							"raw": "{{host}}/user/{{appKey}}/{{user_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"user",
-								"{{appKey}}",
-								"{{user_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Aggregation",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"key\": {\n    \"email\":true\n  },\n  \"initial\": {\n    \"count\": 0\n  },\n  \"reduce\": \"function(doc,out){ out.count++;}\",\n  \"condition\": {  }\n}"
-						},
-						"url": {
-							"raw": "{{host}}/user/{{appKey}}/_group",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"user",
-								"{{appKey}}",
-								"_group"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Soft Delete",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
-								"exec": [
-									"pm.environment.set(\"accessToken\", null);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/user/{{appKey}}/{{user_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"user",
-								"{{appKey}}",
-								"{{user_id}}"
-							]
-						},
-						"description": "This is a soft delete. The user is just disabled but you cannot create a new user with the same username. Use \"Restore User\" to undo."
-					},
-					"response": []
-				},
-				{
-					"name": "Restore User",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{masterKey}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/user/{{appKey}}/{{user_id}}/_restore",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"user",
-								"{{appKey}}",
-								"{{user_id}}",
-								"_restore"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Hard Delete",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
-								"exec": [
-									"pm.environment.set(\"accessToken\", null);",
-									"pm.environment.set(\"user_id\", null);",
-									"pm.environment.set(\"username\", null);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/user/{{appKey}}/{{user_id}}?hard=true",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"user",
-								"{{appKey}}",
-								"{{user_id}}"
-							],
-							"query": [
-								{
-									"key": "hard",
-									"value": "true"
-								}
-							]
-						},
-						"description": "This is a soft delete. The user is just disabled but you cannot create a new user with the same username. Use \"Restore User\" to undo."
-					},
-					"response": []
-				},
-				{
-					"name": "Get count",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/user/{{appKey}}/_count",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"user",
-								"{{appKey}}",
-								"_count"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Logout",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									"pm.environment.set(\"accessToken\", null);",
-									"pm.environment.set(\"user_id\", null);",
-									"pm.environment.set(\"username\", null);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Kinvey {{accessToken}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/user/{{appKey}}/_logout",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"user",
-								"{{appKey}}",
-								"_logout"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Reset Password",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{masterKey}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/user/{{appKey}}/{{user_id}}/reset",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"user",
-								"{{appKey}}",
-								"{{user_id}}",
-								"reset"
-							]
-						},
-						"description": "Reset the user password by generatates and returns a new random password."
-					},
-					"response": []
-				},
-				{
-					"name": "Initiate Password Reset - username",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{appSecret}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/rpc/{{appKey}}/{{username}}/user-password-reset-initiate",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"rpc",
-								"{{appKey}}",
-								"{{username}}",
-								"user-password-reset-initiate"
-							]
-						},
-						"description": "This request will send an email containing a secure time-bound link to the email address on record for the user. The link is served by Kinvey and is valid for twenty minutes from the time of the email. A link can be used for only one reset. Submitting the form will update the password for the user. The user will also receive a confirmation email when they complete the password reset."
-					},
-					"response": []
-				},
-				{
-					"name": "Initiate Password Reset - email",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{appSecret}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/rpc/{{appKey}}/{{email}}/user-password-reset-initiate",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"rpc",
-								"{{appKey}}",
-								"{{email}}",
-								"user-password-reset-initiate"
-							]
-						},
-						"description": "This request will send an email containing a secure time-bound link to the email address on record for the user. The link is served by Kinvey and is valid for twenty minutes from the time of the email. A link can be used for only one reset. Submitting the form will update the password for the user. The user will also receive a confirmation email when they complete the password reset."
-					},
-					"response": []
-				},
-				{
-					"name": "User Discovery",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "Kinvey {{accessToken}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"username\":\"123\"\n}"
-						},
-						"url": {
-							"raw": "{{host}}/user/{{appKey}}/_lookup",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"user",
-								"{{appKey}}",
-								"_lookup"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Email verification",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{appSecret}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/rpc/{{appKey}}/{{username}}/user-email-verification-initiate",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"rpc",
-								"{{appKey}}",
-								"{{username}}",
-								"user-email-verification-initiate"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Username Existence Check",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{appSecret}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"username\": \"{{username}}\"\n}"
-						},
-						"url": {
-							"raw": "{{host}}/rpc/{{appKey}}/check-username-exists",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"rpc",
-								"{{appKey}}",
-								"check-username-exists"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Initiate email verification",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{appSecret}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/rpc/{{appKey}}/{{username}}/user-email-verification-initiate",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"rpc",
-								"{{appKey}}",
-								"{{username}}",
-								"user-email-verification-initiate"
-							]
-						},
-						"description": "Manually initiate the email verification process for a user"
-					},
-					"response": []
-				},
-				{
-					"name": "Forgot username",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{appSecret}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"email\":\"matioa@gmail.com\"\n}"
-						},
-						"url": {
-							"raw": "{{host}}/rpc/{{appKey}}/user-forgot-username",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"rpc",
-								"{{appKey}}",
-								"user-forgot-username"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "User Lock-down",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{masterKey}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"userId\": \"{{user_id}}\",\n  \"setLockdownStateTo\": true\n}"
-						},
-						"url": {
-							"raw": "{{host}}/rpc/{{appKey}}/lockdown-user",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"rpc",
-								"{{appKey}}",
-								"lockdown-user"
-							]
-						},
-						"description": "When a user is in locked-down state, any requests that are authenticated with this user's credentials or that attempt to log-in the user will fail. Additionally, all auth tokens for the user will be destroyed. Since this is an administrative operation, only the master secret can be used to lock-down a user (or unlock that user if already locked-down)."
-					},
-					"response": []
-				},
-				{
-					"name": "User Unlock",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{masterKey}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"userId\": \"{{user_id}}\",\n  \"setLockdownStateTo\": false\n}"
-						},
-						"url": {
-							"raw": "{{host}}/rpc/{{appKey}}/lockdown-user",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"rpc",
-								"{{appKey}}",
-								"lockdown-user"
-							]
-						},
-						"description": "When a user is in locked-down state, any requests that are authenticated with this user's credentials or that attempt to log-in the user will fail. Additionally, all auth tokens for the user will be destroyed. Since this is an administrative operation, only the master secret can be used to lock-down a user (or unlock that user if already locked-down)."
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Data",
-			"item": [
-				{
-					"name": "Get all",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "d25184c7-9ee7-49e7-bc39-fe480547ee96",
-								"exec": [
-									"var response = JSON.parse(responseBody);",
-									"pm.environment.set(\"entity_id\", response[0]._id);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"appdata",
-								"{{appKey}}",
-								"{{collectionName}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get by Id",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "d25184c7-9ee7-49e7-bc39-fe480547ee96",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}/{{entity_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"appdata",
-								"{{appKey}}",
-								"{{collectionName}}",
-								"{{entity_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get count",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}/_count",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"appdata",
-								"{{appKey}}",
-								"{{collectionName}}",
-								"_count"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get with filter",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ef415a37-73e8-4617-9b52-bc10a8f8f203",
-								"exec": [
-									"var response = JSON.parse(responseBody);",
-									"pm.environment.set(\"entity_id\", response[0]._id);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}?query={\"country\":\"France\"}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"appdata",
-								"{{appKey}}",
-								"{{collectionName}}"
-							],
-							"query": [
-								{
-									"key": "query",
-									"value": "{\"country\":\"France\"}"
-								},
-								{
-									"key": "limit",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "skip",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "sort",
-									"value": "_id",
-									"disabled": true
-								},
-								{
-									"key": "fields",
-									"value": "pages,title",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get count with filter",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/appdata/{{appKey}}/{{collectionName}} /_count/?query={\"country\":\"France\"}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"appdata",
-								"{{appKey}}",
-								"{{collectionName}} ",
-								"_count",
-								""
-							],
-							"query": [
-								{
-									"key": "query",
-									"value": "{\"country\":\"France\"}"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "70ae9d69-9e8f-40bd-b50d-eae282bd8150",
-								"exec": [
-									"var response = JSON.parse(responseBody);",
-									"pm.environment.set(\"entity_id\", response._id);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Kinvey {{accessToken}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "  {\n    \"author\": \"Chinua Achebe\",\n    \"country\": \"Nigeria\",\n    \"language\": \"English\",\n    \"link\": \"https://en.wikipedia.org/wiki/Things_Fall_Apart\",\n    \"pages\": 209,\n    \"title\": \"Things Fall Apart\",\n    \"year\": 1958\n  }"
-						},
-						"url": {
-							"raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"appdata",
-								"{{appKey}}",
-								"{{collectionName}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Kinvey {{accessToken}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "  {\n    \"author\": \"Chinua Achebe\",\n    \"country\": \"Nigeria\",\n    \"language\": \"English\",\n    \"link\": \"https://en.wikipedia.org/wiki/Things_Fall_Apart\",\n    \"pages\": 500,\n    \"title\": \"Things Fall Apart\",\n    \"year\": 1958\n  }"
-						},
-						"url": {
-							"raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}/{{entity_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"appdata",
-								"{{appKey}}",
-								"{{collectionName}}",
-								"{{entity_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}/{{entity_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"appdata",
-								"{{appKey}}",
-								"{{collectionName}}",
-								"{{entity_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Collection",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{masterKey}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "X-Kinvey-Delete-Entire-Collection",
-								"value": "true",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"collectionName\": \"your-collection-name\"\n}"
-						},
-						"url": {
-							"raw": "{{host}}/rpc/{{appKey}}/remove-collection",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"rpc",
-								"{{appKey}}",
-								"remove-collection"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Aggregation",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Kinvey {{accessToken}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"key\": {\n    \"country\":true\n  },\n  \"initial\": {\n    \"count\": 0\n  },\n  \"reduce\": \"function(doc,out){ out.count++;}\",\n  \"condition\": {\n    \"pages\": { \"$gt\":10 }\n  }\n}"
-						},
-						"url": {
-							"raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}/_group?",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"appdata",
-								"{{appKey}}",
-								"{{collectionName}}",
-								"_group"
-							],
-							"query": [
-								{
-									"key": "limit",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "skip",
-									"value": "1",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Custom Endpoint",
-			"item": [
-				{
-					"name": "Endpoint",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Kinvey {{accessToken}}"
-							},
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/rpc/{{appKey}}/custom/EndpointNameHere",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"rpc",
-								"{{appKey}}",
-								"custom",
-								"EndpointNameHere"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Flex",
-			"item": [
-				{
-					"name": "Flex  - local",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "X-Kinvey-Username",
-								"value": "{{username}}",
-								"type": "text"
-							},
-							{
-								"key": "X-Kinvey-User-Id",
-								"value": "{{user_id}}",
-								"type": "text"
-							},
-							{
-								"key": "X-Kinvey-Original-Request-Headers",
-								"value": "{\"x-kinvey-api-version\": \"3\",\"authorization\": \"Kinvey {{accessToken}}\",\"x-kinvey-client-app-version\" : \"2.0.5\"}",
-								"type": "text"
-							},
-							{
-								"key": "X-Kinvey-App-Metadata",
-								"value": "{\"_id\": \"{{appKey}}\", \"appsecret\": \"{{appSecret}}\", \"mastersecret\": \"{{masterKey}}\", \"baasUrl\": \"{{host}}\"}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:10001/_flexFunctions/FlexFunctionNameHere",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "10001",
-							"path": [
-								"_flexFunctions",
-								"FlexFunctionNameHere"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Files",
-			"item": [
-				{
-					"name": "1 - Upload Metadata to Kinvey",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "59870221-2ca8-4cc5-92e3-9b9279aac4b1",
-								"exec": [
-									"var response = JSON.parse(responseBody);",
-									"pm.environment.set(\"_uploadURL\", response._uploadURL);",
-									"pm.environment.set(\"file_x-goog-acl\", response._requiredHeaders[\"x-goog-acl\"]);",
-									"pm.environment.set(\"file_Cache-Control\", response._requiredHeaders[\"Cache-Control\"]);",
-									"pm.environment.set(\"file_Content-Type\", response._requiredHeaders[\"Content-Type\"]);",
-									"pm.environment.set(\"file_id\", response._id);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Kinvey {{accessToken}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "X-Kinvey-Content-Type",
-								"value": "image/png"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"_filename\":\"pictureName.PNG\",\"_public\":false}"
-						},
-						"url": {
-							"raw": "{{host}}/blob/{{appKey}}?tls=true",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"blob",
-								"{{appKey}}"
-							],
-							"query": [
-								{
-									"key": "tls",
-									"value": "true",
-									"description": "If true, Google Cloud Storage URLs will use the https protocol instead of http"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "2 - Upload file to GCS",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "x-goog-acl",
-								"value": "{{file_x-goog-acl}}"
-							},
-							{
-								"key": "Cache-Control",
-								"value": "{{file_Cache-Control}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "image/png"
-							}
-						],
-						"body": {
-							"mode": "file",
-							"file": {}
-						},
-						"url": {
-							"raw": "{{_uploadURL}}",
-							"host": [
-								"{{_uploadURL}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get all",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									"var response = JSON.parse(responseBody);",
-									"pm.environment.set(\"file_id\", response[0]._id);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/blob/{{appKey}}/?tls=true&ttl_in_seconds=3600",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"blob",
-								"{{appKey}}",
-								""
-							],
-							"query": [
-								{
-									"key": "tls",
-									"value": "true",
-									"description": "If true, Google Cloud Storage URLs will use the https protocol instead of http"
-								},
-								{
-									"key": "ttl_in_seconds",
-									"value": "3600",
-									"description": "If set, Google Cloud Storage URLs (private files only)  will expire after the specified amount of time"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get by Id",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/blob/{{appKey}}/{{file_id}}?tls=true&ttl_in_seconds=3600",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"blob",
-								"{{appKey}}",
-								"{{file_id}}"
-							],
-							"query": [
-								{
-									"key": "tls",
-									"value": "true",
-									"description": "If true, Google Cloud Storage URLs will use the https protocol instead of http"
-								},
-								{
-									"key": "ttl_in_seconds",
-									"value": "3600",
-									"description": "If set, Google Cloud Storage URLs (private files only)  will expire after the specified amount of time"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get with filter",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									"var response = JSON.parse(responseBody);",
-									"pm.environment.set(\"file_id\", response[0]._id);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/blob/{{appKey}}/?query={\"_filename\": \"GBP.png\"}&tls=true&ttl_in_seconds=3600",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"blob",
-								"{{appKey}}",
-								""
-							],
-							"query": [
-								{
-									"key": "query",
-									"value": "{\"_filename\": \"GBP.png\"}"
-								},
-								{
-									"key": "tls",
-									"value": "true",
-									"description": "If true, Google Cloud Storage URLs will use the https protocol instead of http"
-								},
-								{
-									"key": "ttl_in_seconds",
-									"value": "3600",
-									"description": "If set, Google Cloud Storage URLs (private files only)  will expire after the specified amount of time"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get count",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/blob/{{appKey}}/_count",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"blob",
-								"{{appKey}}",
-								"_count"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get count with filter",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/blob/{{appKey}}/_count?query={\"_filename\": \"sampleReport.pdf\"}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"blob",
-								"{{appKey}}",
-								"_count"
-							],
-							"query": [
-								{
-									"key": "query",
-									"value": "{\"_filename\": \"sampleReport.pdf\"}"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/blob/{{appKey}}/{{file_id}}?tls=true",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"blob",
-								"{{appKey}}",
-								"{{file_id}}"
-							],
-							"query": [
-								{
-									"key": "tls",
-									"value": "true",
-									"description": "If true, Google Cloud Storage URLs will use the https protocol instead of http"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/blob/{{appKey}}/{{file_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"blob",
-								"{{appKey}}",
-								"{{file_id}}"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Roles",
-			"item": [
-				{
-					"name": "Role membership",
-					"item": [
-						{
-							"name": "Assign a role",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{masterKey}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{appKey}}",
-											"type": "string"
-										},
-										{
-											"key": "saveHelperData",
-											"type": "any"
-										},
-										{
-											"key": "showPassword",
-											"value": false,
-											"type": "boolean"
-										}
-									]
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{host}}/user/{{appKey}}/{{user_id}}/roles/{{role_id}}",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										"user",
-										"{{appKey}}",
-										"{{user_id}}",
-										"roles",
-										"{{role_id}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Revoke a role",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{masterKey}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{appKey}}",
-											"type": "string"
-										},
-										{
-											"key": "saveHelperData",
-											"type": "any"
-										},
-										{
-											"key": "showPassword",
-											"value": false,
-											"type": "boolean"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{host}}/user/{{appKey}}/{{user_id}}/roles/{{role_id}}",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										"user",
-										"{{appKey}}",
-										"{{user_id}}",
-										"roles",
-										"{{role_id}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "List user's roles",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{masterKey}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{appKey}}",
-											"type": "string"
-										},
-										{
-											"key": "saveHelperData",
-											"type": "any"
-										},
-										{
-											"key": "showPassword",
-											"value": false,
-											"type": "boolean"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{host}}/user/{{appKey}}/{{user_id}}/roles",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										"user",
-										"{{appKey}}",
-										"{{user_id}}",
-										"roles"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "List role members",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{masterKey}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{appKey}}",
-											"type": "string"
-										},
-										{
-											"key": "saveHelperData",
-											"type": "any"
-										},
-										{
-											"key": "showPassword",
-											"value": false,
-											"type": "boolean"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{host}}/roles/{{appKey}}/{{role_id}}/membership",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										"roles",
-										"{{appKey}}",
-										"{{role_id}}",
-										"membership"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Get all",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "aed307de-6f14-47e9-88fd-09c8f374b65e",
-								"exec": [
-									"var response = JSON.parse(responseBody);",
-									"pm.environment.set(\"role_id\", response[0]._id);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{masterKey}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/roles/{{appKey}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"roles",
-								"{{appKey}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get by Id",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{masterKey}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/roles/{{appKey}}/{{role_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"roles",
-								"{{appKey}}",
-								"{{role_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "a779607a-01e0-4a1e-8cec-d2cc795955f2",
-								"exec": [
-									"var response = JSON.parse(responseBody);",
-									"pm.environment.set(\"role_id\", response._id);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{masterKey}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"name\": \"HumanResourcesDirector\",\n  \"description\": \"Director-level employees at the Human Resources department\"\n}"
-						},
-						"url": {
-							"raw": "{{host}}/roles/{{appKey}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"roles",
-								"{{appKey}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{masterKey}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"name\": \"HumanCapitalDirector\",\n  \"description\": \"Director-level employees at the Human Capital department\"\n}"
-						},
-						"url": {
-							"raw": "{{host}}/roles/{{appKey}}/{{role_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"roles",
-								"{{appKey}}",
-								"{{role_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "957931d1-554b-452a-ad5c-2d587661f728",
-								"exec": [
-									"pm.environment.set(\"role_id\", null);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{masterKey}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/roles/{{appKey}}/{{role_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"roles",
-								"{{appKey}}",
-								"{{role_id}}"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Push Notifications",
-			"item": [
-				{
-					"name": "Register device",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Kinvey {{accessToken}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"platform\": \"ios\",\n  \"deviceId\": \"device ID goes here\",\n  \"userId\": \"{{user_id}}\"\n}"
-						},
-						"url": {
-							"raw": "{{host}}/push/{{appKey}}/register-device",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"push",
-								"{{appKey}}",
-								"register-device"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Unregister device",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Kinvey {{accessToken}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"platform\": \"ios\",\n  \"deviceId\": \"device ID goes here\",\n  \"userId\": \"{{user_id}}\"\n}"
-						},
-						"url": {
-							"raw": "{{host}}/push/{{appKey}}/unregister-device",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"push",
-								"{{appKey}}",
-								"unregister-device"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Send message",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{masterKey}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"messageContent\": \"Your message here\",\n  \"recipients\": [\"{{user_id}}\"]\n}"
-						},
-						"url": {
-							"raw": "{{host}}/push/{{appKey}}/sendMessage",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"push",
-								"{{appKey}}",
-								"sendMessage"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Send broadcast",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{masterKey}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"messageContent\": \"Your message here\"\n}"
-						},
-						"url": {
-							"raw": "{{host}}/push/{{appKey}}/sendBroadcast",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"push",
-								"{{appKey}}",
-								"sendBroadcast"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Email",
-			"item": [
-				{
-					"name": "Send email",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{appSecret}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{appKey}}",
-									"type": "string"
-								},
-								{
-									"key": "saveHelperData",
-									"type": "any"
-								},
-								{
-									"key": "showPassword",
-									"value": false,
-									"type": "boolean"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"to\":\"\",\n\t\"from\":\"\",\n\t\"subject\":\"\",\n\t\"body\":\"\"\n}"
-						},
-						"url": {
-							"raw": "{{host}}/rpc/{{appKey}}/{{username}}/user-email-verification-initiate",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"rpc",
-								"{{appKey}}",
-								"{{username}}",
-								"user-email-verification-initiate"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Live service",
-			"item": [
-				{
-					"name": "Register User for Live service",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"deviceId\":\"\"\n}"
-						},
-						"url": {
-							"raw": "{{host}}/user/{{appKey}}/{{user_id}}/register-realtime",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"user",
-								"{{appKey}}",
-								"{{user_id}}",
-								"register-realtime"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Unregister User for  Live service",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"deviceId\":\"\"\n}"
-						},
-						"url": {
-							"raw": "{{host}}/user/{{appKey}}/{{user_id}}/unregister-realtime",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"user",
-								"{{appKey}}",
-								"{{user_id}}",
-								"unregister-realtime"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Subscribe to collection updates",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}/_subscribe",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"appdata",
-								"{{appKey}}",
-								"{{collectionName}}",
-								"_subscribe"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Unsubscribe to collection updates",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Kinvey {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}/_unsubscribe",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"appdata",
-								"{{appKey}}",
-								"{{collectionName}}",
-								"_unsubscribe"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"id": "586a95fa-06c0-435a-87d0-8255a9636863",
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"id": "b292e59c-9eb7-4358-9d4c-a0984a562bb2",
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"protocolProfileBehavior": {}
+  "info": {
+    "_postman_id": "f5e90b77-0189-4e4d-909c-f508ccf2ba50",
+    "name": "Kinvey",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Ping",
+      "item": [
+        {
+          "name": "Ping instance",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/",
+              "host": ["{{host}}"],
+              "path": [""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ping instance 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/appdata/",
+              "host": ["{{host}}"],
+              "path": ["appdata", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ping app",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{appSecret}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/appdata/{{appKey}}",
+              "host": ["{{host}}"],
+              "path": ["appdata", "{{appKey}}"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Groups",
+          "item": [
+            {
+              "name": "List groups",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
+                    "exec": [
+                      "var response = JSON.parse(responseBody);",
+                      "pm.environment.set(\"group_id\", response[0]._id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "Kinvey {{accessToken}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{host}}/group/{{appKey}}",
+                  "host": ["{{host}}"],
+                  "path": ["group", "{{appKey}}"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Retrieve a group",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
+                    "exec": [""],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "Kinvey {{accessToken}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{host}}/group/{{appKey}}/{{group_id}}",
+                  "host": ["{{host}}"],
+                  "path": ["group", "{{appKey}}", "{{group_id}}"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
+                    "exec": [
+                      "var response = JSON.parse(responseBody);",
+                      "pm.environment.set(\"group_id\", response._id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "Kinvey {{accessToken}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": \"G\",\n  \"users\": {\n    \"all\": false,\n    \"list\": [\n       { \"_type\": \"KinveyRef\", \"_collection\": \"user\", \"_id\": \"1\" },\n       { \"_type\": \"KinveyRef\", \"_collection\": \"user\", \"_id\": \"3\" },\n       { \"_type\": \"KinveyRef\", \"_collection\": \"user\", \"_id\": \"4\" }\n    ]\n  },\n  \"groups\": [\n    { \"_type\": \"KinveyRef\", \"_collection\": \"group\", \"_id\": \"G1\" },\n    { \"_type\": \"KinveyRef\", \"_collection\": \"group\", \"_id\": \"G5\" }\n  ]\n}"
+                },
+                "url": {
+                  "raw": "{{host}}/group/{{appKey}}",
+                  "host": ["{{host}}"],
+                  "path": ["group", "{{appKey}}"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
+                    "exec": [""],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "Kinvey {{accessToken}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{host}}/group/{{appKey}}/{{group_id}}",
+                  "host": ["{{host}}"],
+                  "path": ["group", "{{appKey}}", "{{group_id}}"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
+                    "exec": ["pm.environment.set(\"group_id\", null);"],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "Kinvey {{accessToken}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{host}}/group/{{appKey}}/{{group_id}}",
+                  "host": ["{{host}}"],
+                  "path": ["group", "{{appKey}}", "{{group_id}}"]
+                }
+              },
+              "response": []
+            }
+          ],
+          "protocolProfileBehavior": {},
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
+                "exec": [
+                  "var response = JSON.parse(responseBody);",
+                  "pm.environment.set(\"accessToken\", response._kmd.authtoken);",
+                  "pm.environment.set(\"user_id\", response._id);",
+                  "pm.environment.set(\"username\", response.username);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{appSecret}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\":\"test\",\n  \"password\":\"test\"\n}"
+            },
+            "url": {
+              "raw": "{{host}}/user/{{appKey}}",
+              "host": ["{{host}}"],
+              "path": ["user", "{{appKey}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [
+                  "var response = JSON.parse(responseBody);",
+                  "pm.environment.set(\"accessToken\", response._kmd.authtoken);",
+                  "pm.environment.set(\"user_id\", response._id);",
+                  "pm.environment.set(\"username\", response.username);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{appSecret}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"username\":\"test\",\n\t\"password\":\"test\"\n}"
+            },
+            "url": {
+              "raw": "{{host}}/user/{{appKey}}/login",
+              "host": ["{{host}}"],
+              "path": ["user", "{{appKey}}", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "_me",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/user/{{appKey}}/_me",
+              "host": ["{{host}}"],
+              "path": ["user", "{{appKey}}", "_me"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
+                "exec": [
+                  "var response = JSON.parse(responseBody);",
+                  "pm.environment.set(\"accessToken\", response._kmd.authtoken);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Kinvey {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"FirstName\": \"John\",\n\t\"LastName\": \"Doe\"\n}"
+            },
+            "url": {
+              "raw": "{{host}}/user/{{appKey}}/{{user_id}}",
+              "host": ["{{host}}"],
+              "path": ["user", "{{appKey}}", "{{user_id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Aggregation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": {\n    \"email\":true\n  },\n  \"initial\": {\n    \"count\": 0\n  },\n  \"reduce\": \"function(doc,out){ out.count++;}\",\n  \"condition\": {  }\n}"
+            },
+            "url": {
+              "raw": "{{host}}/user/{{appKey}}/_group",
+              "host": ["{{host}}"],
+              "path": ["user", "{{appKey}}", "_group"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Soft Delete",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
+                "exec": ["pm.environment.set(\"accessToken\", null);"],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/user/{{appKey}}/{{user_id}}",
+              "host": ["{{host}}"],
+              "path": ["user", "{{appKey}}", "{{user_id}}"]
+            },
+            "description": "This is a soft delete. The user is just disabled but you cannot create a new user with the same username. Use \"Restore User\" to undo."
+          },
+          "response": []
+        },
+        {
+          "name": "Restore User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{masterKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/user/{{appKey}}/{{user_id}}/_restore",
+              "host": ["{{host}}"],
+              "path": ["user", "{{appKey}}", "{{user_id}}", "_restore"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Hard Delete",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f769308c-67f8-4c81-9d59-b4d97dab552f",
+                "exec": [
+                  "pm.environment.set(\"accessToken\", null);",
+                  "pm.environment.set(\"user_id\", null);",
+                  "pm.environment.set(\"username\", null);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/user/{{appKey}}/{{user_id}}?hard=true",
+              "host": ["{{host}}"],
+              "path": ["user", "{{appKey}}", "{{user_id}}"],
+              "query": [
+                {
+                  "key": "hard",
+                  "value": "true"
+                }
+              ]
+            },
+            "description": "This is a soft delete. The user is just disabled but you cannot create a new user with the same username. Use \"Restore User\" to undo."
+          },
+          "response": []
+        },
+        {
+          "name": "Get count",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/user/{{appKey}}/_count",
+              "host": ["{{host}}"],
+              "path": ["user", "{{appKey}}", "_count"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [
+                  "pm.environment.set(\"accessToken\", null);",
+                  "pm.environment.set(\"user_id\", null);",
+                  "pm.environment.set(\"username\", null);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Kinvey {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/user/{{appKey}}/_logout",
+              "host": ["{{host}}"],
+              "path": ["user", "{{appKey}}", "_logout"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{masterKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/user/{{appKey}}/{{user_id}}/reset",
+              "host": ["{{host}}"],
+              "path": ["user", "{{appKey}}", "{{user_id}}", "reset"]
+            },
+            "description": "Reset the user password by generatates and returns a new random password."
+          },
+          "response": []
+        },
+        {
+          "name": "Initiate Password Reset - username",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{appSecret}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/rpc/{{appKey}}/{{username}}/user-password-reset-initiate",
+              "host": ["{{host}}"],
+              "path": [
+                "rpc",
+                "{{appKey}}",
+                "{{username}}",
+                "user-password-reset-initiate"
+              ]
+            },
+            "description": "This request will send an email containing a secure time-bound link to the email address on record for the user. The link is served by Kinvey and is valid for twenty minutes from the time of the email. A link can be used for only one reset. Submitting the form will update the password for the user. The user will also receive a confirmation email when they complete the password reset."
+          },
+          "response": []
+        },
+        {
+          "name": "Initiate Password Reset - email",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{appSecret}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/rpc/{{appKey}}/{{email}}/user-password-reset-initiate",
+              "host": ["{{host}}"],
+              "path": [
+                "rpc",
+                "{{appKey}}",
+                "{{email}}",
+                "user-password-reset-initiate"
+              ]
+            },
+            "description": "This request will send an email containing a secure time-bound link to the email address on record for the user. The link is served by Kinvey and is valid for twenty minutes from the time of the email. A link can be used for only one reset. Submitting the form will update the password for the user. The user will also receive a confirmation email when they complete the password reset."
+          },
+          "response": []
+        },
+        {
+          "name": "User Discovery",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Kinvey {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\":\"123\"\n}"
+            },
+            "url": {
+              "raw": "{{host}}/user/{{appKey}}/_lookup",
+              "host": ["{{host}}"],
+              "path": ["user", "{{appKey}}", "_lookup"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Email verification",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{appSecret}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/rpc/{{appKey}}/{{username}}/user-email-verification-initiate",
+              "host": ["{{host}}"],
+              "path": [
+                "rpc",
+                "{{appKey}}",
+                "{{username}}",
+                "user-email-verification-initiate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Username Existence Check",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{appSecret}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{username}}\"\n}"
+            },
+            "url": {
+              "raw": "{{host}}/rpc/{{appKey}}/check-username-exists",
+              "host": ["{{host}}"],
+              "path": ["rpc", "{{appKey}}", "check-username-exists"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Initiate email verification",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{appSecret}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/rpc/{{appKey}}/{{username}}/user-email-verification-initiate",
+              "host": ["{{host}}"],
+              "path": [
+                "rpc",
+                "{{appKey}}",
+                "{{username}}",
+                "user-email-verification-initiate"
+              ]
+            },
+            "description": "Manually initiate the email verification process for a user"
+          },
+          "response": []
+        },
+        {
+          "name": "Forgot username",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{appSecret}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"email\":\"matioa@gmail.com\"\n}"
+            },
+            "url": {
+              "raw": "{{host}}/rpc/{{appKey}}/user-forgot-username",
+              "host": ["{{host}}"],
+              "path": ["rpc", "{{appKey}}", "user-forgot-username"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User Lock-down",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{masterKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{user_id}}\",\n  \"setLockdownStateTo\": true\n}"
+            },
+            "url": {
+              "raw": "{{host}}/rpc/{{appKey}}/lockdown-user",
+              "host": ["{{host}}"],
+              "path": ["rpc", "{{appKey}}", "lockdown-user"]
+            },
+            "description": "When a user is in locked-down state, any requests that are authenticated with this user's credentials or that attempt to log-in the user will fail. Additionally, all auth tokens for the user will be destroyed. Since this is an administrative operation, only the master secret can be used to lock-down a user (or unlock that user if already locked-down)."
+          },
+          "response": []
+        },
+        {
+          "name": "User Unlock",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{masterKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{user_id}}\",\n  \"setLockdownStateTo\": false\n}"
+            },
+            "url": {
+              "raw": "{{host}}/rpc/{{appKey}}/lockdown-user",
+              "host": ["{{host}}"],
+              "path": ["rpc", "{{appKey}}", "lockdown-user"]
+            },
+            "description": "When a user is in locked-down state, any requests that are authenticated with this user's credentials or that attempt to log-in the user will fail. Additionally, all auth tokens for the user will be destroyed. Since this is an administrative operation, only the master secret can be used to lock-down a user (or unlock that user if already locked-down)."
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Data",
+      "item": [
+        {
+          "name": "Get all",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "d25184c7-9ee7-49e7-bc39-fe480547ee96",
+                "exec": [
+                  "var response = JSON.parse(responseBody);",
+                  "pm.environment.set(\"entity_id\", response[0]._id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}",
+              "host": ["{{host}}"],
+              "path": ["appdata", "{{appKey}}", "{{collectionName}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get by Id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "d25184c7-9ee7-49e7-bc39-fe480547ee96",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}/{{entity_id}}",
+              "host": ["{{host}}"],
+              "path": [
+                "appdata",
+                "{{appKey}}",
+                "{{collectionName}}",
+                "{{entity_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get count",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}/_count",
+              "host": ["{{host}}"],
+              "path": ["appdata", "{{appKey}}", "{{collectionName}}", "_count"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get with filter",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ef415a37-73e8-4617-9b52-bc10a8f8f203",
+                "exec": [
+                  "var response = JSON.parse(responseBody);",
+                  "pm.environment.set(\"entity_id\", response[0]._id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}?query={\"country\":\"France\"}",
+              "host": ["{{host}}"],
+              "path": ["appdata", "{{appKey}}", "{{collectionName}}"],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "{\"country\":\"France\"}"
+                },
+                {
+                  "key": "limit",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "skip",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "_id",
+                  "disabled": true
+                },
+                {
+                  "key": "fields",
+                  "value": "pages,title",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get count with filter",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/appdata/{{appKey}}/{{collectionName}} /_count/?query={\"country\":\"France\"}",
+              "host": ["{{host}}"],
+              "path": [
+                "appdata",
+                "{{appKey}}",
+                "{{collectionName}} ",
+                "_count",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "{\"country\":\"France\"}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "70ae9d69-9e8f-40bd-b50d-eae282bd8150",
+                "exec": [
+                  "var response = JSON.parse(responseBody);",
+                  "pm.environment.set(\"entity_id\", response._id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Kinvey {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "  {\n    \"author\": \"Chinua Achebe\",\n    \"country\": \"Nigeria\",\n    \"language\": \"English\",\n    \"link\": \"https://en.wikipedia.org/wiki/Things_Fall_Apart\",\n    \"pages\": 209,\n    \"title\": \"Things Fall Apart\",\n    \"year\": 1958\n  }"
+            },
+            "url": {
+              "raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}",
+              "host": ["{{host}}"],
+              "path": ["appdata", "{{appKey}}", "{{collectionName}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Kinvey {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "  {\n    \"author\": \"Chinua Achebe\",\n    \"country\": \"Nigeria\",\n    \"language\": \"English\",\n    \"link\": \"https://en.wikipedia.org/wiki/Things_Fall_Apart\",\n    \"pages\": 500,\n    \"title\": \"Things Fall Apart\",\n    \"year\": 1958\n  }"
+            },
+            "url": {
+              "raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}/{{entity_id}}",
+              "host": ["{{host}}"],
+              "path": [
+                "appdata",
+                "{{appKey}}",
+                "{{collectionName}}",
+                "{{entity_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}/{{entity_id}}",
+              "host": ["{{host}}"],
+              "path": [
+                "appdata",
+                "{{appKey}}",
+                "{{collectionName}}",
+                "{{entity_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Collection",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{masterKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Kinvey-Delete-Entire-Collection",
+                "value": "true",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collectionName\": \"your-collection-name\"\n}"
+            },
+            "url": {
+              "raw": "{{host}}/rpc/{{appKey}}/remove-collection",
+              "host": ["{{host}}"],
+              "path": ["rpc", "{{appKey}}", "remove-collection"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Aggregation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Kinvey {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": {\n    \"country\":true\n  },\n  \"initial\": {\n    \"count\": 0\n  },\n  \"reduce\": \"function(doc,out){ out.count++;}\",\n  \"condition\": {\n    \"pages\": { \"$gt\":10 }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}/_group?",
+              "host": ["{{host}}"],
+              "path": ["appdata", "{{appKey}}", "{{collectionName}}", "_group"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "skip",
+                  "value": "1",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Custom Endpoint",
+      "item": [
+        {
+          "name": "Endpoint",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Kinvey {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/rpc/{{appKey}}/custom/EndpointNameHere",
+              "host": ["{{host}}"],
+              "path": ["rpc", "{{appKey}}", "custom", "EndpointNameHere"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Flex",
+      "item": [
+        {
+          "name": "Flex  - local",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Kinvey-Username",
+                "value": "{{username}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Kinvey-User-Id",
+                "value": "{{user_id}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Kinvey-Original-Request-Headers",
+                "value": "{\"x-kinvey-api-version\": \"3\",\"authorization\": \"Kinvey {{accessToken}}\",\"x-kinvey-client-app-version\" : \"2.0.5\"}",
+                "type": "text"
+              },
+              {
+                "key": "X-Kinvey-App-Metadata",
+                "value": "{\"_id\": \"{{appKey}}\", \"appsecret\": \"{{appSecret}}\", \"mastersecret\": \"{{masterKey}}\", \"baasUrl\": \"{{host}}\"}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:10001/_flexFunctions/FlexFunctionNameHere",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "10001",
+              "path": ["_flexFunctions", "FlexFunctionNameHere"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Files",
+      "item": [
+        {
+          "name": "1 - Upload Metadata to Kinvey",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "59870221-2ca8-4cc5-92e3-9b9279aac4b1",
+                "exec": [
+                  "var response = JSON.parse(responseBody);",
+                  "pm.environment.set(\"_uploadURL\", response._uploadURL);",
+                  "pm.environment.set(\"file_x-goog-acl\", response._requiredHeaders[\"x-goog-acl\"]);",
+                  "pm.environment.set(\"file_Cache-Control\", response._requiredHeaders[\"Cache-Control\"]);",
+                  "pm.environment.set(\"file_Content-Type\", response._requiredHeaders[\"Content-Type\"]);",
+                  "pm.environment.set(\"file_id\", response._id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Kinvey {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Kinvey-Content-Type",
+                "value": "image/png"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"_filename\":\"pictureName.PNG\",\"_public\":false}"
+            },
+            "url": {
+              "raw": "{{host}}/blob/{{appKey}}?tls=true",
+              "host": ["{{host}}"],
+              "path": ["blob", "{{appKey}}"],
+              "query": [
+                {
+                  "key": "tls",
+                  "value": "true",
+                  "description": "If true, Google Cloud Storage URLs will use the https protocol instead of http"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2 - Upload file to GCS",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-goog-acl",
+                "value": "{{file_x-goog-acl}}"
+              },
+              {
+                "key": "Cache-Control",
+                "value": "{{file_Cache-Control}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "image/png"
+              }
+            ],
+            "body": {
+              "mode": "file",
+              "file": {}
+            },
+            "url": {
+              "raw": "{{_uploadURL}}",
+              "host": ["{{_uploadURL}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [
+                  "var response = JSON.parse(responseBody);",
+                  "pm.environment.set(\"file_id\", response[0]._id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/blob/{{appKey}}/?tls=true&ttl_in_seconds=3600",
+              "host": ["{{host}}"],
+              "path": ["blob", "{{appKey}}", ""],
+              "query": [
+                {
+                  "key": "tls",
+                  "value": "true",
+                  "description": "If true, Google Cloud Storage URLs will use the https protocol instead of http"
+                },
+                {
+                  "key": "ttl_in_seconds",
+                  "value": "3600",
+                  "description": "If set, Google Cloud Storage URLs (private files only)  will expire after the specified amount of time"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get by Id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/blob/{{appKey}}/{{file_id}}?tls=true&ttl_in_seconds=3600",
+              "host": ["{{host}}"],
+              "path": ["blob", "{{appKey}}", "{{file_id}}"],
+              "query": [
+                {
+                  "key": "tls",
+                  "value": "true",
+                  "description": "If true, Google Cloud Storage URLs will use the https protocol instead of http"
+                },
+                {
+                  "key": "ttl_in_seconds",
+                  "value": "3600",
+                  "description": "If set, Google Cloud Storage URLs (private files only)  will expire after the specified amount of time"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get with filter",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [
+                  "var response = JSON.parse(responseBody);",
+                  "pm.environment.set(\"file_id\", response[0]._id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/blob/{{appKey}}/?query={\"_filename\": \"GBP.png\"}&tls=true&ttl_in_seconds=3600",
+              "host": ["{{host}}"],
+              "path": ["blob", "{{appKey}}", ""],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "{\"_filename\": \"GBP.png\"}"
+                },
+                {
+                  "key": "tls",
+                  "value": "true",
+                  "description": "If true, Google Cloud Storage URLs will use the https protocol instead of http"
+                },
+                {
+                  "key": "ttl_in_seconds",
+                  "value": "3600",
+                  "description": "If set, Google Cloud Storage URLs (private files only)  will expire after the specified amount of time"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get count",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/blob/{{appKey}}/_count",
+              "host": ["{{host}}"],
+              "path": ["blob", "{{appKey}}", "_count"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get count with filter",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/blob/{{appKey}}/_count?query={\"_filename\": \"sampleReport.pdf\"}",
+              "host": ["{{host}}"],
+              "path": ["blob", "{{appKey}}", "_count"],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "{\"_filename\": \"sampleReport.pdf\"}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/blob/{{appKey}}/{{file_id}}?tls=true",
+              "host": ["{{host}}"],
+              "path": ["blob", "{{appKey}}", "{{file_id}}"],
+              "query": [
+                {
+                  "key": "tls",
+                  "value": "true",
+                  "description": "If true, Google Cloud Storage URLs will use the https protocol instead of http"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/blob/{{appKey}}/{{file_id}}",
+              "host": ["{{host}}"],
+              "path": ["blob", "{{appKey}}", "{{file_id}}"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Roles",
+      "item": [
+        {
+          "name": "Role membership",
+          "item": [
+            {
+              "name": "Assign a role",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{masterKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{appKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "saveHelperData",
+                      "type": "any"
+                    },
+                    {
+                      "key": "showPassword",
+                      "value": false,
+                      "type": "boolean"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{host}}/user/{{appKey}}/{{user_id}}/roles/{{role_id}}",
+                  "host": ["{{host}}"],
+                  "path": [
+                    "user",
+                    "{{appKey}}",
+                    "{{user_id}}",
+                    "roles",
+                    "{{role_id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Revoke a role",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{masterKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{appKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "saveHelperData",
+                      "type": "any"
+                    },
+                    {
+                      "key": "showPassword",
+                      "value": false,
+                      "type": "boolean"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{host}}/user/{{appKey}}/{{user_id}}/roles/{{role_id}}",
+                  "host": ["{{host}}"],
+                  "path": [
+                    "user",
+                    "{{appKey}}",
+                    "{{user_id}}",
+                    "roles",
+                    "{{role_id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "List user's roles",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{masterKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{appKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "saveHelperData",
+                      "type": "any"
+                    },
+                    {
+                      "key": "showPassword",
+                      "value": false,
+                      "type": "boolean"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{host}}/user/{{appKey}}/{{user_id}}/roles",
+                  "host": ["{{host}}"],
+                  "path": ["user", "{{appKey}}", "{{user_id}}", "roles"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "List role members",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{masterKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{appKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "saveHelperData",
+                      "type": "any"
+                    },
+                    {
+                      "key": "showPassword",
+                      "value": false,
+                      "type": "boolean"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{host}}/roles/{{appKey}}/{{role_id}}/membership",
+                  "host": ["{{host}}"],
+                  "path": ["roles", "{{appKey}}", "{{role_id}}", "membership"]
+                }
+              },
+              "response": []
+            }
+          ],
+          "protocolProfileBehavior": {},
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "Get all",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "aed307de-6f14-47e9-88fd-09c8f374b65e",
+                "exec": [
+                  "var response = JSON.parse(responseBody);",
+                  "pm.environment.set(\"role_id\", response[0]._id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{masterKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/roles/{{appKey}}",
+              "host": ["{{host}}"],
+              "path": ["roles", "{{appKey}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get by Id",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{masterKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/roles/{{appKey}}/{{role_id}}",
+              "host": ["{{host}}"],
+              "path": ["roles", "{{appKey}}", "{{role_id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "a779607a-01e0-4a1e-8cec-d2cc795955f2",
+                "exec": [
+                  "var response = JSON.parse(responseBody);",
+                  "pm.environment.set(\"role_id\", response._id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{masterKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"HumanResourcesDirector\",\n  \"description\": \"Director-level employees at the Human Resources department\"\n}"
+            },
+            "url": {
+              "raw": "{{host}}/roles/{{appKey}}",
+              "host": ["{{host}}"],
+              "path": ["roles", "{{appKey}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{masterKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"HumanCapitalDirector\",\n  \"description\": \"Director-level employees at the Human Capital department\"\n}"
+            },
+            "url": {
+              "raw": "{{host}}/roles/{{appKey}}/{{role_id}}",
+              "host": ["{{host}}"],
+              "path": ["roles", "{{appKey}}", "{{role_id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "957931d1-554b-452a-ad5c-2d587661f728",
+                "exec": ["pm.environment.set(\"role_id\", null);"],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{masterKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/roles/{{appKey}}/{{role_id}}",
+              "host": ["{{host}}"],
+              "path": ["roles", "{{appKey}}", "{{role_id}}"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Push Notifications",
+      "item": [
+        {
+          "name": "Register device",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Kinvey {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"platform\": \"ios\",\n  \"deviceId\": \"device ID goes here\",\n  \"userId\": \"{{user_id}}\"\n}"
+            },
+            "url": {
+              "raw": "{{host}}/push/{{appKey}}/register-device",
+              "host": ["{{host}}"],
+              "path": ["push", "{{appKey}}", "register-device"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Unregister device",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Kinvey {{accessToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"platform\": \"ios\",\n  \"deviceId\": \"device ID goes here\",\n  \"userId\": \"{{user_id}}\"\n}"
+            },
+            "url": {
+              "raw": "{{host}}/push/{{appKey}}/unregister-device",
+              "host": ["{{host}}"],
+              "path": ["push", "{{appKey}}", "unregister-device"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Send message",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{masterKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messageContent\": \"Your message here\",\n  \"recipients\": [\"{{user_id}}\"]\n}"
+            },
+            "url": {
+              "raw": "{{host}}/push/{{appKey}}/sendMessage",
+              "host": ["{{host}}"],
+              "path": ["push", "{{appKey}}", "sendMessage"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Send broadcast",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{masterKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messageContent\": \"Your message here\"\n}"
+            },
+            "url": {
+              "raw": "{{host}}/push/{{appKey}}/sendBroadcast",
+              "host": ["{{host}}"],
+              "path": ["push", "{{appKey}}", "sendBroadcast"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Email",
+      "item": [
+        {
+          "name": "Send email",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "{{appSecret}}",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "{{appKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "saveHelperData",
+                  "type": "any"
+                },
+                {
+                  "key": "showPassword",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"to\":\"\",\n\t\"from\":\"\",\n\t\"subject\":\"\",\n\t\"body\":\"\"\n}"
+            },
+            "url": {
+              "raw": "{{host}}/rpc/{{appKey}}/{{username}}/user-email-verification-initiate",
+              "host": ["{{host}}"],
+              "path": [
+                "rpc",
+                "{{appKey}}",
+                "{{username}}",
+                "user-email-verification-initiate"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Live service",
+      "item": [
+        {
+          "name": "Register User for Live service",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"deviceId\":\"\"\n}"
+            },
+            "url": {
+              "raw": "{{host}}/user/{{appKey}}/{{user_id}}/register-realtime",
+              "host": ["{{host}}"],
+              "path": ["user", "{{appKey}}", "{{user_id}}", "register-realtime"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Unregister User for  Live service",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"deviceId\":\"\"\n}"
+            },
+            "url": {
+              "raw": "{{host}}/user/{{appKey}}/{{user_id}}/unregister-realtime",
+              "host": ["{{host}}"],
+              "path": [
+                "user",
+                "{{appKey}}",
+                "{{user_id}}",
+                "unregister-realtime"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Subscribe to collection updates",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}/_subscribe",
+              "host": ["{{host}}"],
+              "path": [
+                "appdata",
+                "{{appKey}}",
+                "{{collectionName}}",
+                "_subscribe"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Unsubscribe to collection updates",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7e25bef3-d6b0-427f-a55a-58774b3c0a3b",
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Kinvey {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}/_unsubscribe",
+              "host": ["{{host}}"],
+              "path": [
+                "appdata",
+                "{{appKey}}",
+                "{{collectionName}}",
+                "_unsubscribe"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "586a95fa-06c0-435a-87d0-8255a9636863",
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "b292e59c-9eb7-4358-9d4c-a0984a562bb2",
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "protocolProfileBehavior": {}
 }
