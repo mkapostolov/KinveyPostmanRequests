@@ -2887,7 +2887,7 @@
               "basic": [
                 {
                   "key": "password",
-                  "value": "{{appSecret}}",
+                  "value": "{{masterKey}}",
                   "type": "string"
                 },
                 {
@@ -2918,13 +2918,12 @@
               "raw": "{\n\t\"to\":\"\",\n\t\"from\":\"\",\n\t\"subject\":\"\",\n\t\"body\":\"\"\n}"
             },
             "url": {
-              "raw": "{{host}}/rpc/{{appKey}}/{{username}}/user-email-verification-initiate",
+              "raw": "{{host}}/rpc/{{appKey}}/send-email",
               "host": ["{{host}}"],
               "path": [
                 "rpc",
                 "{{appKey}}",
-                "{{username}}",
-                "user-email-verification-initiate"
+                "send-email"
               ]
             }
           },
