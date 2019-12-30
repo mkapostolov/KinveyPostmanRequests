@@ -1540,7 +1540,7 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{host}}/appdata/{{appKey}}/{{collectionName}} /_count/?query={\"country\":\"France\"}",
+              "raw": "{{host}}/appdata/{{appKey}}/{{collectionName}}/_count/?query={\"country\":\"France\"}",
               "host": ["{{host}}"],
               "path": [
                 "appdata",
