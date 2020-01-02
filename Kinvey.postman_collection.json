@@ -2769,7 +2769,11 @@
             "url": {
               "raw": "{{host}}/rpc/{{appKey}}/send-email",
               "host": ["{{host}}"],
-              "path": ["rpc", "{{appKey}}", "send-email"]
+              "path": [
+                "rpc",
+                "{{appKey}}",
+                "send-email"
+              ]
             }
           },
           "response": []
